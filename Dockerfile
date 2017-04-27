@@ -7,9 +7,11 @@ LABEL maintainer kopplow.tim@gmail.com
 RUN curl -O https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz
 
 # pour ext ldap
-RUN apt-get install -y libldap2-dev
-RUN docker-php-ext-configure ldap --prefix=/usr/local/php --with-ldap=/usr/lib/i386-linux-gnu
+RUN apt-get update && apt-get install -y libldap2-dev
+# https://bugs.php.net/bug.php?id=49876
+RUN ln -fs /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/
 RUN docker-php-ext-install ldap
+RUN docker-php-ext-enable ldap
 
 # Install unzip and extract the dokuwiki files to the actual webserver folder
 RUN apt-get update \
