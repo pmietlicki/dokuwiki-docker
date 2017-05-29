@@ -7,7 +7,7 @@ ARG UPDATE=true
 ENV UPDATE=${UPDATE}
 
 # Download dokuwiki source
-RUN if $UPDATE -eq "true"; then curl -O https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz else curl -o dokuwiki-stable.tgz https://download.dokuwiki.org/out/dokuwiki-4df974a154ed376b43dafde403576818.tgz; fi 
+RUN if $UPDATE -eq "false"; then curl -O https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz else curl -o dokuwiki-stable.tgz https://download.dokuwiki.org/out/dokuwiki-4df974a154ed376b43dafde403576818.tgz; fi 
 
 # pour ext ldap
 RUN apt-get update && apt-get install -y libldap2-dev vim zlib1g-dev openssl git libssl-dev
