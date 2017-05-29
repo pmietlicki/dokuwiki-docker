@@ -15,7 +15,7 @@ RUN docker-php-ext-enable ldap zip
 
 # Install unzip and extract the dokuwiki files to the actual webserver folder
 RUN apt-get update \
-    && tar -xzvf dokuwiki-stable.tgz --strip-components=1 -C /var/www/html \
+    && tar -xzvf dokuwiki-stable.tgz --strip-components=1 -C /var/www/html --exclude='./data' \
     && cd /var/www/html \
     && find . -type d -exec chmod 755 {} \; \
     && find . -type f -exec chmod 644 {} \; \
