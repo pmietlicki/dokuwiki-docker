@@ -4,6 +4,7 @@ FROM php:7.1-apache
 LABEL maintainer pmietlicki@gmail.com
 
 ARG UPDATE=true
+ENV UPDATE=${UPDATE}
 
 # Download dokuwiki source
 RUN if $UPDATE -eq "true"; then curl -O https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz else curl -o dokuwiki-stable.tgz https://download.dokuwiki.org/out/dokuwiki-4df974a154ed376b43dafde403576818.tgz; fi 
